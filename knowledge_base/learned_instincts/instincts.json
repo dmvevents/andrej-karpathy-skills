@@ -1,0 +1,139 @@
+[
+  {
+    "id": "K001",
+    "rule": "State assumptions explicitly before implementing. If scope, format, fields, or architecture is ambiguous, enumerate assumptions as a numbered list and ask for clarification.",
+    "principle": "think_before_coding",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/hidden_assumptions.md",
+    "trigger": "ambiguous_request"
+  },
+  {
+    "id": "K002",
+    "rule": "When a requirement word has multiple technical interpretations (faster, better, secure, scalable), present each interpretation with effort estimates. Do NOT pick one silently.",
+    "principle": "think_before_coding",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/silent_interpretation.md",
+    "trigger": "ambiguous_adjective"
+  },
+  {
+    "id": "K003",
+    "rule": "If a simpler approach exists, say so and push back. Do not implement the complex version just because it was implied.",
+    "principle": "think_before_coding",
+    "confidence": 0.90,
+    "source": "karpathy_tweet_2025",
+    "trigger": "complex_request"
+  },
+  {
+    "id": "K004",
+    "rule": "If something is unclear, STOP. Name what's confusing. Ask. Do not proceed with a guess.",
+    "principle": "think_before_coding",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "trigger": "confusion"
+  },
+  {
+    "id": "K010",
+    "rule": "No features beyond what was asked. No abstractions for single-use code. No flexibility or configurability that wasn't requested.",
+    "principle": "simplicity_first",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/speculative_features.md",
+    "trigger": "feature_implementation"
+  },
+  {
+    "id": "K011",
+    "rule": "No error handling for impossible scenarios. Only validate at system boundaries (user input, external APIs). Trust internal code and framework guarantees.",
+    "principle": "simplicity_first",
+    "confidence": 0.90,
+    "source": "karpathy_tweet_2025",
+    "trigger": "error_handling"
+  },
+  {
+    "id": "K012",
+    "rule": "If you write 200 lines and it could be 50, rewrite it. One function until complexity is actually needed. Three similar lines > premature abstraction.",
+    "principle": "simplicity_first",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/over_abstraction.md",
+    "trigger": "code_length"
+  },
+  {
+    "id": "K013",
+    "rule": "Ask: 'Would a senior engineer say this is overcomplicated?' If yes, simplify. Design patterns are for when you NEED them, not when you MIGHT need them.",
+    "principle": "simplicity_first",
+    "confidence": 0.90,
+    "source": "karpathy_tweet_2025",
+    "trigger": "design_pattern_usage"
+  },
+  {
+    "id": "K020",
+    "rule": "Don't improve adjacent code, comments, or formatting while making a targeted change. Don't refactor things that aren't broken.",
+    "principle": "surgical_changes",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/drive_by_refactoring.md",
+    "trigger": "editing_code"
+  },
+  {
+    "id": "K021",
+    "rule": "Match existing code style exactly: quote style, type annotations, whitespace, boolean patterns, naming conventions. Even if you'd do it differently.",
+    "principle": "surgical_changes",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/style_drift.md",
+    "trigger": "editing_code"
+  },
+  {
+    "id": "K022",
+    "rule": "If you notice unrelated dead code or improvements, MENTION them — don't implement them. Remove only imports/variables/functions that YOUR changes made unused.",
+    "principle": "surgical_changes",
+    "confidence": 0.90,
+    "source": "karpathy_tweet_2025",
+    "trigger": "dead_code_noticed"
+  },
+  {
+    "id": "K023",
+    "rule": "Every changed line must trace directly to the user's request. If a line doesn't, revert it.",
+    "principle": "surgical_changes",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "trigger": "diff_review"
+  },
+  {
+    "id": "K030",
+    "rule": "Transform imperative tasks into verifiable goals with explicit success criteria. 'Fix auth' → 'Write test that reproduces bug, make it pass, verify no regressions.'",
+    "principle": "goal_driven_execution",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/vague_execution.md",
+    "trigger": "task_start"
+  },
+  {
+    "id": "K031",
+    "rule": "For multi-step tasks, state plan as: [Step] → verify: [specific check]. Each step independently verifiable and deployable.",
+    "principle": "goal_driven_execution",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "positive_example": "positive_examples/verifiable_plan.md",
+    "trigger": "multi_step_task"
+  },
+  {
+    "id": "K032",
+    "rule": "Never fix a bug without reproducing it first. Write a failing test, confirm it fails, fix the code, confirm it passes. The test IS the success criterion.",
+    "principle": "goal_driven_execution",
+    "confidence": 0.95,
+    "source": "karpathy_tweet_2025",
+    "negative_example": "negative_examples/fix_without_reproducing.md",
+    "trigger": "bug_fix"
+  },
+  {
+    "id": "K033",
+    "rule": "Strong success criteria let the LLM loop independently. Weak criteria ('make it work') require constant clarification. Invest in defining criteria upfront.",
+    "principle": "goal_driven_execution",
+    "confidence": 0.90,
+    "source": "karpathy_tweet_2025",
+    "trigger": "success_criteria"
+  }
+]

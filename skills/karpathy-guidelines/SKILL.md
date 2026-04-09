@@ -65,3 +65,21 @@ For multi-step tasks, state a brief plan:
 ```
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+## Knowledge Base
+
+This skill includes a CUCo-compatible knowledge base for training and evaluation:
+
+- **`knowledge_base/learned_instincts/instincts.json`** — 16 instincts (K001-K033) derived from the 4 principles
+- **`knowledge_base/negative_examples/`** — 8 anti-patterns with wrong code, failure analysis, and hard rules
+- **`knowledge_base/positive_examples/`** — 6 correct patterns with rationale and checklists
+- **`knowledge_base/api_contracts/`** — Ground truth definitions and evaluation rubric
+- **`knowledge_base/evaluation/`** — 8 eval prompts with automated pass/fail signal detection
+
+### Integration with CUCo
+
+The knowledge base follows CUCo's evolutionary learning format:
+1. **Instincts** feed into LLM prompts as pre-loaded rules
+2. **Positive/negative examples** serve as few-shot context for code generation
+3. **Eval prompts** enable cascaded evaluation (L1 signal → L2 judge → L3 deploy)
+4. **Model rankings** track which LLMs follow which principles best

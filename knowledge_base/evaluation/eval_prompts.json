@@ -1,0 +1,75 @@
+[
+  {
+    "id": "EVAL-001",
+    "principle": "think_before_coding",
+    "prompt": "Add a feature to export user data",
+    "pass_criteria": "Must ask clarifying questions about scope, format, fields, and volume BEFORE writing any code",
+    "fail_signals": ["User.query.all()", "open('users.json')", "fieldnames=", "def export_users"],
+    "pass_signals": ["clarify", "which fields", "how many users", "API endpoint", "background job", "privacy"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "EVAL-002",
+    "principle": "think_before_coding",
+    "prompt": "Make the search faster",
+    "pass_criteria": "Must present multiple interpretations of 'faster' (latency, throughput, perceived speed) and ask which matters",
+    "fail_signals": ["@lru_cache", "async def search", "import redis"],
+    "pass_signals": ["response time", "throughput", "concurrent", "perceived speed", "which aspect"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "EVAL-003",
+    "principle": "simplicity_first",
+    "prompt": "Add a function to calculate discount",
+    "pass_criteria": "Must produce a simple function (under 10 lines), no Strategy pattern, no ABC, no dataclass",
+    "fail_signals": ["DiscountStrategy", "ABC", "abstractmethod", "Protocol", "DiscountConfig", "dataclass"],
+    "pass_signals": ["def calculate_discount", "amount * (percent", "return amount"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "EVAL-004",
+    "principle": "simplicity_first",
+    "prompt": "Save user preferences to database",
+    "pass_criteria": "Must produce a simple function with db, user_id, preferences params. No caching, validation, merge, or notification system",
+    "fail_signals": ["InMemoryCache", "DefaultValidator", "merge: bool", "notify: bool", "PreferenceManager"],
+    "pass_signals": ["def save_preferences", "db.execute", "json.dumps"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "EVAL-005",
+    "principle": "surgical_changes",
+    "prompt": "Here is a validator function:\n```python\ndef validate_user(user_data):\n    # Check email format\n    if not user_data.get('email'):\n        raise ValueError('Email required')\n    # Basic email validation\n    if '@' not in user_data['email']:\n        raise ValueError('Invalid email')\n    # Check username\n    if not user_data.get('username'):\n        raise ValueError('Username required')\n    return True\n```\nFix the bug where empty string emails crash the validator.",
+    "pass_criteria": "Must ONLY fix the empty email handling. Must NOT add docstring, change comments, add type hints, or modify username validation",
+    "fail_signals": ["\"\"\"Validate", "username.isalnum", "len(username)", ".strip()", "email.split('@')[1]"],
+    "pass_signals": ["email = user_data.get('email', '')", "not email"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "EVAL-006",
+    "principle": "surgical_changes",
+    "prompt": "Here is an upload function using single quotes and no type hints:\n```python\ndef upload_file(file_path, destination):\n    try:\n        with open(file_path, 'rb') as f:\n            data = f.read()\n        response = requests.post(destination, files={'file': data})\n        if response.status_code == 200:\n            return True\n        else:\n            return False\n    except Exception as e:\n        print(f'Error: {e}')\n        return False\n```\nAdd logging to this function.",
+    "pass_criteria": "Must use single quotes (matching existing style), NOT add type hints, NOT add docstring, NOT change boolean return pattern",
+    "fail_signals": ["file_path: str", "-> bool", "\"\"\"Upload", "\"rb\"", "\"file\""],
+    "pass_signals": ["logger.info(f'", "logger.error(f'", "logger.exception(f'", "import logging"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "EVAL-007",
+    "principle": "goal_driven_execution",
+    "prompt": "Fix the authentication system",
+    "pass_criteria": "Must ask what specific issue before implementing. Must propose a plan with [Step] → verify: [check] format",
+    "fail_signals": ["def authenticate", "def login", "I'll fix the authentication"],
+    "pass_signals": ["what specific issue", "reproduce", "test that", "verify:", "success criteria"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "EVAL-008",
+    "principle": "goal_driven_execution",
+    "prompt": "The sorting breaks when there are duplicate scores. Here's the function:\n```python\ndef sort_scores(scores):\n    return sorted(scores, key=lambda x: -x['score'])\n```",
+    "pass_criteria": "Must write a failing test FIRST that demonstrates the non-deterministic ordering, THEN fix the sort to include a tiebreaker",
+    "fail_signals": ["return sorted(scores, key=lambda x: (-x['score'], x['name']))"],
+    "pass_signals": ["def test_sort", "assert", "x['name']", "fails", "reproduce"],
+    "difficulty": "hard",
+    "note": "The fail_signal is the fix WITHOUT a test — producing correct code isn't enough if you skip reproduction"
+  }
+]

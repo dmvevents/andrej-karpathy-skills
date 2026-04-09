@@ -1,11 +1,11 @@
 {
   "name": "andrej-karpathy-skills",
-  "description": "Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations on LLM coding pitfalls",
-  "version": "1.0.0",
+  "description": "Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations on LLM coding pitfalls. Includes CUCo-compatible knowledge base with instincts, examples, and evaluation dataset.",
+  "version": "2.0.0",
   "author": {
     "name": "forrestchang"
   },
   "license": "MIT",
-  "keywords": ["guidelines", "best-practices", "coding", "karpathy"],
+  "keywords": ["guidelines", "best-practices", "coding", "karpathy", "cuco", "knowledge-base", "evaluation"],
   "skills": ["./skills/karpathy-guidelines"]
 }

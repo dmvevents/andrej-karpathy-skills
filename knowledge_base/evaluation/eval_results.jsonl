@@ -1,0 +1,2 @@
+{"timestamp": "2026-04-09T10:27:46.632568+00:00", "model": "test-model", "eval_id": "EVAL-003", "l1": {"level": "L1", "passed": false, "fail_signals_found": ["DiscountStrategy", "ABC"], "pass_signals_found": [], "score": 0.0}}
+{"timestamp": "2026-04-09T10:27:50.014588+00:00", "model": "test-model", "eval_id": "EVAL-003", "l1": {"level": "L1", "passed": true, "fail_signals_found": [], "pass_signals_found": ["def calculate_discount", "amount * (percent", "return amount"], "score": 1.0}}
